@@ -1,7 +1,9 @@
+import 'package:eden_task/app/features/order/ui/views/screens/order_detail_screen.dart';
 import 'package:eden_task/app/shared/ui/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -38,18 +40,15 @@ class AuthScreen extends StatelessWidget {
           AppIconButton(
             text: 'Sign in with Google',
             icon: const FaIcon(FontAwesomeIcons.google, size: 24),
-            onPressed: () {},
+            onPressed: () => context.push(OrderDetailScreen.name),
           ),
           const SizedBox(height: 10),
-
-           const Text('or'),
-
-           const SizedBox(height: 10),
-
+          const Text('or'),
+          const SizedBox(height: 10),
           AppIconButton(
             text: 'Sign in with GitHub',
             icon: const FaIcon(FontAwesomeIcons.github, size: 24),
-            onPressed: () {},
+            onPressed: () => context.push(OrderDetailScreen.name),
             color: Colors.black,
           ),
         ],

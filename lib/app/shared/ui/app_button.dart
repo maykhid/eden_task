@@ -19,7 +19,7 @@ class AppIconButton extends StatelessWidget {
   final double? height;
   final double? borderRadius;
   final Widget icon;
-  final VoidCallback onPressed;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {

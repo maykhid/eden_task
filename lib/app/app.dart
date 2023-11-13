@@ -1,4 +1,4 @@
-import 'package:eden_task/app/features/auth/ui/auth_screen.dart';
+import 'package:eden_task/core/navigation/app_navigation_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +10,7 @@ class EdenApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.latoTextTheme(textTheme).copyWith(
@@ -19,7 +19,7 @@ class EdenApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home: const AuthScreen(),
+      routerConfig: AppRouterConfig.goRouter,
     );
   }
 }
