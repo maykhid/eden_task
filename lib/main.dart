@@ -14,4 +14,3 @@ setup() async {
   initDependencies();
   await dotenv.load();
 }
-
