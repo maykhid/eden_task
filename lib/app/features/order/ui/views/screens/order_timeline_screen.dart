@@ -37,7 +37,6 @@ class OrderTimelineScreen extends StatelessWidget {
                 ],
               ),
               const Gap(15),
-              
               Expanded(
                 child: ListView.separated(
                   itemCount: 30,
@@ -47,7 +46,7 @@ class OrderTimelineScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return const OrderTimelineCard(
                       timelineStatus: 'Your order has been placed.',
-                      timelineTimeStamp: '9:23 AM',
+                      timelineTimestamp: '9:23 AM',
                       timelineDesc:
                           'Waiting for the vendor to accept your order. ',
                     );

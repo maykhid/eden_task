@@ -1,17 +1,16 @@
-
 import 'package:flutter/material.dart';
 
 class OrderTimelineCard extends StatelessWidget {
   const OrderTimelineCard({
     required this.timelineStatus,
     required this.timelineDesc,
-    required this.timelineTimeStamp,
+    required this.timelineTimestamp,
     super.key,
   });
 
   final String timelineStatus;
   final String timelineDesc;
-  final String timelineTimeStamp;
+  final String timelineTimestamp;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class OrderTimelineCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(timelineTimeStamp),
+                Text(timelineTimestamp),
               ],
             ),
             Text(
