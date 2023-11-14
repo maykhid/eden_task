@@ -13,6 +13,8 @@ dependencies:
   ably_flutter: ^1.2.22
   bloc: ^8.1.2
   cupertino_icons: ^1.0.2
+  firebase_auth: ^4.13.0
+  firebase_core: ^2.22.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
