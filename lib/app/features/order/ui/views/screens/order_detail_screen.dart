@@ -1,9 +1,12 @@
+import 'package:eden_task/app/features/auth/ui/cubit/authentication_cubit.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_timeline_screen.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_item.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_tracker_tab.dart';
 import 'package:eden_task/app/shared/ui/app_images.dart';
 import 'package:eden_task/core/utils/sized_context.dart';
+import 'package:eden_task/core/utils/string_x.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +19,8 @@ class OrderDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthenticationCubit>().user;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -25,16 +30,27 @@ class OrderDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // avatar -- user info
-                const Align(
-                  alignment: Alignment.centerRight,
+                Align(
+                  alignment: Alignment.centerLeft,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      CircleAvatar(),
-                      Gap(5),
-                      Text(
-                        'Hi Henry',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(user.imageUrl!),
+                      ),
+                      const Gap(5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hi ${user.name!.firstword}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            user.email!,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
                     ],
                   ),
