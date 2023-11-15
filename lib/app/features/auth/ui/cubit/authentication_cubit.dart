@@ -26,26 +26,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   AuthenticatedUser get user => _authenticationRepository.user;
-
-  Future<void> _signInWithGoogle() async {
-    final result = await _authenticationRepository.signInWithGoogle();
-
-    if (result.isSuccess) {
-      emit(const AuthenticationState.authenticated());
-    } else {
-      emit(const AuthenticationState.unauthenticated());
-    }
-  }
-
-  Future<void> _signInWithGithub() async {
-    final result = await _authenticationRepository.signInWithGithub();
-
-    if (result.isSuccess) {
-      emit(const AuthenticationState.authenticated());
-    } else {
-      emit(const AuthenticationState.unauthenticated());
-    }
-  }
 }
 
 enum AuthenticationStatus {

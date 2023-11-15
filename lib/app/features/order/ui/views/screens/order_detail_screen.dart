@@ -1,4 +1,3 @@
-import 'package:eden_task/app/features/auth/data/model/authenticated_user.dart';
 import 'package:eden_task/app/features/auth/ui/cubit/authentication_cubit.dart';
 import 'package:eden_task/app/features/order/ui/cubit/order_cubit.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_timeline_screen.dart';
