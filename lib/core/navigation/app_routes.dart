@@ -20,10 +20,10 @@ class AppRoutes {
       },
     ),
 
-    GoRoute(
-      path: OrderTimelineScreen.name,
-      builder: (context, state) => const OrderTimelineScreen(),
-    ),
+    // GoRoute(
+    //   path: OrderTimelineScreen.name,
+    //   builder: (context, state) => const OrderTimelineScreen(),
+    // ),
 
     GoRoute(
       path: OrderDetailScreen.name,
