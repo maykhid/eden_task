@@ -28,6 +28,7 @@ dependencies:
   google_sign_in: ^6.1.6
   injectable: ^2.3.2
   redacted: ^1.0.11
+  toastification: ^1.1.0
   very_good_analysis: ^5.1.0
 
 dev_dependencies:

@@ -27,7 +27,6 @@ class FirebaseAuthentication implements AuthenticationInterface {
       final githubProvider = GithubAuthProvider();
       await _firebaseAuth.signInWithProvider(githubProvider);
     } on FirebaseAuthException catch (e) {
-      print(e.message);
       throw Exception(e.message);
     } catch (e) {
       throw Exception(e);
@@ -48,7 +47,6 @@ class FirebaseAuthentication implements AuthenticationInterface {
 
       await _firebaseAuth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
-       print(e.message);
       throw Exception(e.message);
     } catch (e) {
       throw Exception(e);
@@ -58,7 +56,7 @@ class FirebaseAuthentication implements AuthenticationInterface {
   @override
   AuthenticatedUser get user {
     return AuthenticatedUser(
-      id: _user!.uid,
+      id: _user?.uid ?? '',
       name: _user?.displayName,
       email: _user?.email,
       imageUrl: _user?.photoURL,

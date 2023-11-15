@@ -1,4 +1,3 @@
-import 'package:eden_task/app/features/auth/ui/cubit/authentication_cubit.dart';
 import 'package:eden_task/app/features/auth/ui/cubit/sign_in_cubit.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_detail_screen.dart';
 import 'package:eden_task/app/shared/ui/app_button.dart';
@@ -9,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:toastification/toastification.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -34,7 +34,12 @@ class AuthView extends StatelessWidget {
     return BlocListener<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state.status.isError) {
-          print('Error in signing in');
+          toastification.show(
+              context: context,
+              title: state.message!,
+              type: ToastificationType.error,
+              autoCloseDuration: const Duration(seconds: 3),
+            );
         } else if (state.status.isSuccess) {
           context.push(OrderDetailScreen.name);
         }

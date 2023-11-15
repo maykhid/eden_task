@@ -1,8 +1,11 @@
+import 'package:eden_task/app/features/auth/data/model/authenticated_user.dart';
 import 'package:eden_task/app/features/auth/ui/cubit/authentication_cubit.dart';
+import 'package:eden_task/app/features/order/ui/cubit/order_cubit.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_timeline_screen.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_item.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_tracker_tab.dart';
 import 'package:eden_task/app/shared/ui/app_images.dart';
+import 'package:eden_task/core/utils/data_response.dart';
 import 'package:eden_task/core/utils/sized_context.dart';
 import 'package:eden_task/core/utils/string_x.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +14,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:toastification/toastification.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   const OrderDetailScreen({super.key});
@@ -19,10 +23,47 @@ class OrderDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationCubit>().user;
-
     return Scaffold(
-      body: SafeArea(
+      body: BlocProvider<OrderCubit>(
+        create: (context) => OrderCubit(),
+        child: const OrderDetailView(),
+      ),
+    );
+  }
+}
+
+class OrderDetailView extends StatefulWidget {
+  const OrderDetailView({
+    super.key,
+  });
+
+  @override
+  State<OrderDetailView> createState() => _OrderDetailViewState();
+}
+
+class _OrderDetailViewState extends State<OrderDetailView> {
+  @override
+  Widget build(BuildContext context) {
+    final user = context.read<AuthenticationCubit>().user;
+    return BlocListener<OrderCubit, OrderState>(
+      listener: (context, state) {
+        if (state.status.isError) {
+          toastification.show(
+            context: context,
+            title: state.message!,
+            type: ToastificationType.error,
+            autoCloseDuration: const Duration(seconds: 3),
+          );
+        } else if (state.status.isProcessing) {
+          toastification.show(
+            context: context,
+            title: 'message came',
+            type: ToastificationType.success,
+            autoCloseDuration: const Duration(seconds: 3),
+          );
+        }
+      },
+      child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
