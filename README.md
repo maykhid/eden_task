@@ -1,9 +1,9 @@
 # Eden (Task)
 
 # An Assessment Project.
-An app that displays an order and updates it's status in realtime.
+An app that displays an order and updates its status in real-time.
 
-## 🖼️: Screenshots ##
+## 🖼️ Screenshots ##
 <p float="left">
   <img src= "https://github.com/maykhid/eden_task/blob/main/assets/images/app_ui.jpg" width="434.5" height="424.5" />
   
@@ -13,28 +13,32 @@ An app that displays an order and updates it's status in realtime.
 
 
 ## ✨✨ Features
-- User authentication.
-- Live update.
+* User authentication with Firebase Auth via Google or GitHub.
+* Real-time order tracking with seamless updates.
+* Clean and intuitive UI with a focus on user experience.
 
 ## 🛠 Essential Plugins / Packages Used
 - Bloc (For State Management) 
-- Equatable (For checking equality of Objects)
+- Equatable (For checking the equality of Objects)
 - Get-It (For Dependency Injection)
 - Ably flutter (Live updates)
 - Firebase auth
-- Google sign in
+- Google sign-in
 
-## Getting Started
-You have to have Flutter installed in your machine. Clone this repository and run `flutter pub get`.
-I am currently running `Flutter version 3.7.6` with `Dart version 2.19.3`.
+## 🦾 Getting Started
+You have to have Flutter installed on your machine. Clone this repository and run `flutter pub get`.
+I am currently running `Flutter version beta, 3.15.0-15.2.pre` with `Dart version 3.2.0`. Register on <a href="https://azure.microsoft.com/en-us/services/cognitive-services/translator/#overview" target="_blank"> Ably</a> to get your API key.
 
 ## 📖 Brief
-This project as previously stated is a simple blog app for users to read blog posts. They can share, search and bookmark posts. 
+The task is to build a simple order-tracking app using Flutter, incorporating Firebase Auth for user authentication and Ably Realtime for real-time updates. The app enables users to sign in with either Google or GitHub via Firebase Auth.
 
-It also includes a Caching mechanism that stores posts locally, this is so that the user has something to read when there is no internet connection (I understand that this might make errors hard to see, so to really see how errors are handled, please make sure to clear app data and run the app without internet connection to see how errors are displayed).
+## 🛠 Technical Note
+The app connects to Ably and listens for updates as soon as the app is launched and attached to the ``eden`` channel. Updates sent from Ably are received in real-time and will update the UI but using the pre-determined data makes the app work as intended without any hiccups ``{
+  "name": "Eden",
+  "data": "ORDER PLACED"
+}``, the ``data`` value should be any of these ``ORDER PLACED``, ``ORDER ACCEPTED``, ``ORDER PICK UP IN PROGRESS``, ``ORDER ON THE WAY TO CUSTOMER``, ``ORDER ARRIVED`` and ``ORDER DELIVERED`` (so the app can work as intended).
 
-* Edge case:
-The user details were not returned when making the `/posts` request call on our API so I had to make another call to get the list of users, then match the returned `userId` against the users id to get the name of the author. I returned both Posts and Users for every request made using a Tuple. This allows for cleaner and less verbose code. I applied this to every other parts where the Users (Authors) were needed.
+## ⚠️ Issues
+On some devices, authentication might not work especially when you sign in with GitHub you might get this error:
+```Unable to process the request due to missing initial state. This may happen if browser sessionStorage is inaccessible or accidentally cleared. Some specific scenarios are - 1) Using IDP-Initiated SAML SSO. 2) Using signInWithRedirect in a storage-partitioned browser environment.``` This is an active Firebase issue, you can follow it <a href="https://github.com/firebase/firebase-js-sdk/issues/4256" target="_blank"> here</a>, try another sign-in method when that occurs.
 
-
-The app can be used offline also. All functionalities still exist as long as all data needed were stored locally.
