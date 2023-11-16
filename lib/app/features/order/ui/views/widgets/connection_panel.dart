@@ -1,4 +1,4 @@
-import 'package:eden_task/app/features/order/ui/connection_view_model.dart'
+import 'package:eden_task/app/features/order/ui/connection_bloc.dart'
     as connect;
 import 'package:eden_task/app/shared/ui/fading_widget.dart';
 import 'package:eden_task/core/utils/connection_state.dart';
@@ -26,20 +26,18 @@ class _ConnectionPanelState extends State<ConnectionPanel> {
           final connectionState = state.connectionState;
 
           if (connectionState.isConnected) {
-            return const ConnectionSignal();
+            return const _ConnectedSignal();
           }
 
-          return const DisconnectionSignal();
+          return const _DisconnectedSignal();
         },
       ),
     );
   }
 }
 
-class DisconnectionSignal extends StatelessWidget {
-  const DisconnectionSignal({
-    super.key,
-  });
+class _DisconnectedSignal extends StatelessWidget {
+  const _DisconnectedSignal();
 
   @override
   Widget build(BuildContext context) {
@@ -61,10 +59,8 @@ class DisconnectionSignal extends StatelessWidget {
   }
 }
 
-class ConnectionSignal extends StatelessWidget {
-  const ConnectionSignal({
-    super.key,
-  });
+class _ConnectedSignal extends StatelessWidget {
+  const _ConnectedSignal();
 
   @override
   Widget build(BuildContext context) {

@@ -77,24 +77,13 @@ class OrderTimelineView extends StatelessWidget {
                   final hasData = state.orders.isNotEmpty;
 
                   if (!hasData) {
-                    return Center(
-                      child: FadingWidget(
-                        child: Text(
-                          'Awaiting your order...',
-                          style: GoogleFonts.varelaRound(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey.shade300,
-                          ),
-                        ),
-                      ),
-                    );
+                    return const _AwaitingOrder();
                   }
 
                   return ListView.separated(
                     itemCount: state.orders.length,
                     separatorBuilder: (context, index) {
-                      return const SeparatorWidget();
+                      return const _SeparatorWidget();
                     },
                     itemBuilder: (context, index) {
                       final order = state.orders[index];
@@ -115,10 +104,28 @@ class OrderTimelineView extends StatelessWidget {
   }
 }
 
-class SeparatorWidget extends StatelessWidget {
-  const SeparatorWidget({
-    super.key,
-  });
+class _AwaitingOrder extends StatelessWidget {
+  const _AwaitingOrder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: FadingWidget(
+        child: Text(
+          'Awaiting your order...',
+          style: GoogleFonts.varelaRound(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey.shade300,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SeparatorWidget extends StatelessWidget {
+  const _SeparatorWidget();
 
   @override
   Widget build(BuildContext context) {

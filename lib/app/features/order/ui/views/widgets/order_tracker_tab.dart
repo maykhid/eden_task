@@ -61,23 +61,3 @@ class OrderTrackerTab extends StatelessWidget {
     );
   }
 }
-
-List<Widget> generatePills() {
-  return List.generate(
-    6,
-    (index) {
-      return Expanded(
-        child: Padding(
-          padding: const EdgeInsets.only(right: 4),
-          child: Container(
-            height: 3,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
-      );
-    },
-  );
-}

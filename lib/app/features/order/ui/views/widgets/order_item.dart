@@ -37,22 +37,22 @@ class OrderItemInfo extends StatelessWidget {
               color: Colors.grey.shade300,
             ),
             const Gap(10),
-            const OrderItemStat(
+            const _OrderItemStat(
               orderItemStatTitle: 'Order',
               orderItemStatValue: 'Egg Salad',
             ),
             const Gap(10),
-            const OrderItemStat(
+            const _OrderItemStat(
               orderItemStatTitle: 'Order Date',
               orderItemStatValue: '23 Nov 2023',
             ),
             const Gap(10),
-            const OrderItemStat(
+            const _OrderItemStat(
               orderItemStatTitle: 'Order ID',
               orderItemStatValue: '#3456543',
             ),
             const Gap(10),
-            const OrderItemStat(
+            const _OrderItemStat(
               orderItemStatTitle: 'Order Quantity',
               orderItemStatValue: 'x3',
             ),
@@ -64,11 +64,10 @@ class OrderItemInfo extends StatelessWidget {
 }
 
 
-class OrderItemStat extends StatelessWidget {
-  const OrderItemStat({
+class _OrderItemStat extends StatelessWidget {
+  const _OrderItemStat({
     required this.orderItemStatTitle,
     required this.orderItemStatValue,
-    super.key,
   });
 
   final String orderItemStatTitle;

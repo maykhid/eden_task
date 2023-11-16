@@ -82,7 +82,7 @@ class _OrderDetailViewState extends State<OrderDetailView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //image
-                      const FoodImage(),
+                      const _FoodImage(),
 
                       const Gap(5),
 
@@ -94,7 +94,7 @@ class _OrderDetailViewState extends State<OrderDetailView> {
 
                       const Gap(10),
 
-                      const TrackOrder(),
+                      const _TrackOrder(),
                     ],
                   ),
                 ),
@@ -116,10 +116,8 @@ class _OrderDetailViewState extends State<OrderDetailView> {
   }
 }
 
-class FoodImage extends StatelessWidget {
-  const FoodImage({
-    super.key,
-  });
+class _FoodImage extends StatelessWidget {
+  const _FoodImage();
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +138,8 @@ class FoodImage extends StatelessWidget {
   }
 }
 
-class TrackOrder extends StatelessWidget {
-  const TrackOrder({
-    super.key,
-  });
+class _TrackOrder extends StatelessWidget {
+  const _TrackOrder();
 
   @override
   Widget build(BuildContext context) {
