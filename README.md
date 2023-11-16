@@ -9,6 +9,8 @@ An app that displays an order and updates it's status in realtime.
   
 </p>
 
+![](https://github.com/maykhid/eden_task/blob/main/assets/images/demo.gif)
+
 
 ## ✨✨ Features
 - User authentication.
