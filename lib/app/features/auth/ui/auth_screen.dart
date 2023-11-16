@@ -1,6 +1,7 @@
 import 'package:eden_task/app/features/auth/ui/cubit/sign_in_cubit.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_detail_screen.dart';
 import 'package:eden_task/app/shared/ui/app_button.dart';
+import 'package:eden_task/app/shared/ui/app_dialog.dart';
 import 'package:eden_task/core/utils/data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,14 +35,28 @@ class AuthView extends StatelessWidget {
     return BlocListener<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state.status.isError) {
+          context.pop(); // remove load dialog
           toastification.show(
-              context: context,
-              title: state.message!,
-              type: ToastificationType.error,
-              autoCloseDuration: const Duration(seconds: 3),
-            );
+            context: context,
+            title: state.message!,
+            type: ToastificationType.error,
+            autoCloseDuration: const Duration(seconds: 3),
+          );
         } else if (state.status.isSuccess) {
-          context.push(OrderDetailScreen.name);
+          context
+            ..pop() // remove load dialog
+            ..pushReplacement(OrderDetailScreen.name);
+        } else {
+          AppDialog.showAppDialog(
+            context,
+            const SizedBox(
+              height: 100,
+              width: 70,
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ),
+          );
         }
       },
       child: Column(
@@ -70,7 +85,7 @@ class AuthView extends StatelessWidget {
           const Text('Continue with'),
           const Gap(20),
           AppIconButton(
-            text: 'Sign in with Google',
+            text: 'Google',
             icon: const FaIcon(FontAwesomeIcons.google, size: 24),
             onPressed: () => context.read<SignInCubit>().signInWithGoogle(),
           ),
@@ -78,7 +93,7 @@ class AuthView extends StatelessWidget {
           const Text('or'),
           const SizedBox(height: 10),
           AppIconButton(
-            text: 'Sign in with GitHub',
+            text: 'GitHub',
             icon: const FaIcon(FontAwesomeIcons.github, size: 24),
             onPressed: () => context.read<SignInCubit>().signInWithGithub(),
             color: Colors.black,
