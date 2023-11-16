@@ -9,16 +9,11 @@ abstract class RegisterModule {
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
 
   @singleton
-  Realtime get realtime {
-    // Create an instance of ClientOptions with Ably key
+  RealtimeChannel get realtimeChannel {
     final clientOptions = ClientOptions(key: ApiConfig.ablyApiKey);
 
-    return Realtime(options: clientOptions);
-  }
-
-  @singleton
-  RealtimeChannel get realtimeChannel {
-    const channelName = 'getting-started';
+    final realtime = Realtime(options: clientOptions);
+    const channelName = 'eden';
     return RealtimeChannel(realtime, channelName);
   }
 }
