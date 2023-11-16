@@ -5,7 +5,7 @@ An app that displays an order and updates it's status in realtime.
 
 ## 🖼️: Screenshots ##
 <p float="left">
-  <img src= "https://github.com/maykhid/eden_task/blob/main/assets/images/app_ui.jpg" width="720" height="360" />
+  <img src= "https://github.com/maykhid/eden_task/blob/main/assets/images/app_ui.jpg" width="869" height="849" />
   <img src="https://user-images.githubusercontent.com/54851623/197095679-b089e24a-f6a7-4c5d-9329-64dcf7c0bf7d.png" width="320" height="700"/> 
 <!--   <img src="/img3.png" width="100" /> -->
 </p>
