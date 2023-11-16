@@ -39,6 +39,6 @@ The app connects to Ably and listens for updates as soon as the app is launched 
 }``, the ``data`` value should be any of these ``ORDER PLACED``, ``ORDER ACCEPTED``, ``ORDER PICK UP IN PROGRESS``, ``ORDER ON THE WAY TO CUSTOMER``, ``ORDER ARRIVED`` and ``ORDER DELIVERED`` (so the app can work as intended).
 
 ## ⚠️ Issues
-On some devices, authentication might not work especially when you sign in with GitHub you might get this error:
+On some devices, authentication might not work especially when you try to sign in with GitHub you might get this error:
 ```Unable to process the request due to missing initial state. This may happen if browser sessionStorage is inaccessible or accidentally cleared. Some specific scenarios are - 1) Using IDP-Initiated SAML SSO. 2) Using signInWithRedirect in a storage-partitioned browser environment.``` This is an active Firebase issue, you can follow it <a href="https://github.com/firebase/firebase-js-sdk/issues/4256" target="_blank"> here</a>, try another sign-in method when that occurs.
 
