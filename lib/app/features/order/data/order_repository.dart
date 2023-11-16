@@ -1,5 +1,6 @@
 import 'package:eden_task/app/features/order/data/model/order.dart' as order;
 import 'package:eden_task/app/features/order/data/order_interface.dart';
+import 'package:eden_task/core/utils/connection_state.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -13,4 +14,7 @@ class OrderRepository {
   final OrderDataSourceInterface _orderDataSourceInterface;
 
   Stream<order.Order> get orderStream => _orderDataSourceInterface.orderStream;
+
+  Stream<AppConnectionState> get connectionState =>
+      _orderDataSourceInterface.connectionState;
 }

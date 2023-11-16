@@ -1,18 +1,18 @@
-import 'package:eden_task/app/features/auth/ui/cubit/authentication_cubit.dart';
+// ignore_for_file: curly_braces_in_flow_control_structures
 
 import 'package:eden_task/app/features/order/ui/cubit/order_bloc.dart';
 import 'package:eden_task/app/features/order/ui/views/screens/order_timeline_screen.dart';
+import 'package:eden_task/app/features/order/ui/views/widgets/connection_panel.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_item.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_tracker_tab.dart';
+import 'package:eden_task/app/features/order/ui/views/widgets/user_info.dart';
 import 'package:eden_task/app/shared/ui/app_images.dart';
 
 import 'package:eden_task/core/utils/sized_context.dart';
-import 'package:eden_task/core/utils/string_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderDetailScreen extends StatelessWidget {
@@ -43,7 +43,7 @@ class OrderDetailView extends StatefulWidget {
 class _OrderDetailViewState extends State<OrderDetailView> {
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AuthenticationCubit>().user;
+    // final connection = ConnectionViewModel();
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
@@ -51,31 +51,14 @@ class _OrderDetailViewState extends State<OrderDetailView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // avatar -- user info
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(user.imageUrl!),
-                    ),
-                    const Gap(5),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hi ${user.name!.firstword}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          user.email!,
-                          style: const TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // avatar -- user info
+                  UserInfo(),
+
+                  ConnectionPanel(),
+                ],
               ),
 
               const Gap(20),
@@ -90,12 +73,7 @@ class _OrderDetailViewState extends State<OrderDetailView> {
 
               const Gap(15),
 
-              // image container
-              Container(
-                decoration: BoxDecoration(
-                  // color: const Color(0xffE7DAC9),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+              SizedBox(
                 height: 250,
                 width: context.width,
                 child: Padding(
@@ -104,20 +82,8 @@ class _OrderDetailViewState extends State<OrderDetailView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //image
-                      Expanded(
-                        child: Container(
-                          width: 400,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            image: const DecorationImage(
-                              fit: BoxFit.fitWidth,
-                              image: AssetImage(
-                                AppImages.food,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const FoodImage(),
+
                       const Gap(5),
 
                       Container(
@@ -128,31 +94,7 @@ class _OrderDetailViewState extends State<OrderDetailView> {
 
                       const Gap(10),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Track your order',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          InkWell(
-                            child: const FaIcon(
-                              FontAwesomeIcons.circleArrowRight,
-                            ),
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute<OrderTimelineScreen>(
-                                builder: (ctx) => OrderTimelineScreen(
-                                  cubit: context.read<OrderBloc>(),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      const TrackOrder(),
                     ],
                   ),
                 ),
@@ -170,6 +112,65 @@ class _OrderDetailViewState extends State<OrderDetailView> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class FoodImage extends StatelessWidget {
+  const FoodImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        width: 400,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          image: const DecorationImage(
+            fit: BoxFit.fitWidth,
+            image: AssetImage(
+              AppImages.food,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TrackOrder extends StatelessWidget {
+  const TrackOrder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Track your order',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        InkWell(
+          child: const FaIcon(
+            FontAwesomeIcons.circleArrowRight,
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute<OrderTimelineScreen>(
+              builder: (ctx) => OrderTimelineScreen(
+                cubit: context.read<OrderBloc>(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

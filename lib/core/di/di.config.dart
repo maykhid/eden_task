@@ -38,13 +38,16 @@ extension GetItInjectableX on _i1.GetIt {
     );
     final registerModule = _$RegisterModule();
     gh.singleton<_i3.FirebaseAuth>(registerModule.firebaseAuth);
+    gh.singleton<_i4.Realtime>(registerModule.realtime);
     gh.singleton<_i4.RealtimeChannel>(registerModule.realtimeChannel);
     gh.singleton<_i5.AuthenticationInterface>(
         _i6.FirebaseAuthentication(firebaseAuth: gh<_i3.FirebaseAuth>()));
     gh.singleton<_i7.AuthenticationRepository>(_i7.AuthenticationRepository(
         authenticationInterface: gh<_i5.AuthenticationInterface>()));
-    gh.singleton<_i8.OrderDataSourceInterface>(
-        _i9.AblyOrderDataSource(realtimeChannel: gh<_i4.RealtimeChannel>()));
+    gh.singleton<_i8.OrderDataSourceInterface>(_i9.AblyOrderDataSource(
+      realtime: gh<_i4.Realtime>(),
+      realtimeChannel: gh<_i4.RealtimeChannel>(),
+    ));
     gh.singleton<_i10.OrderRepository>(_i10.OrderRepository(
         orderDataSourceInterface: gh<_i8.OrderDataSourceInterface>()));
     return this;

@@ -39,12 +39,12 @@ class OrderItemInfo extends StatelessWidget {
             const Gap(10),
             const OrderItemStat(
               orderItemStatTitle: 'Order',
-              orderItemStatValue: 'Apple',
+              orderItemStatValue: 'Egg Salad',
             ),
             const Gap(10),
             const OrderItemStat(
               orderItemStatTitle: 'Order Date',
-              orderItemStatValue: '23 Nov 2012',
+              orderItemStatValue: '23 Nov 2023',
             ),
             const Gap(10),
             const OrderItemStat(

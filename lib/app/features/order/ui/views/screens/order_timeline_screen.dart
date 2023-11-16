@@ -1,5 +1,7 @@
 import 'package:eden_task/app/features/order/ui/cubit/order_bloc.dart';
 import 'package:eden_task/app/features/order/ui/views/widgets/order_timeline_card.dart';
+import 'package:eden_task/app/shared/ui/fading_widget.dart';
+import 'package:eden_task/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -72,17 +74,34 @@ class OrderTimelineView extends StatelessWidget {
                 listener: (_, __) {},
                 // buildWhen: (_, __) => orders != __.orders,
                 builder: (context, state) {
+                  final hasData = state.orders.isNotEmpty;
+
+                  if (!hasData) {
+                    return Center(
+                      child: FadingWidget(
+                        child: Text(
+                          'Awaiting your order...',
+                          style: GoogleFonts.varelaRound(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
                   return ListView.separated(
                     itemCount: state.orders.length,
                     separatorBuilder: (context, index) {
                       return const SeparatorWidget();
                     },
                     itemBuilder: (context, index) {
-                      return const OrderTimelineCard(
-                        timelineStatus: 'Your order has been placed.',
-                        timelineTimestamp: '9:23 AM',
-                        timelineDesc:
-                            'Waiting for the vendor to accept your order. ',
+                      final order = state.orders[index];
+                      return OrderTimelineCard(
+                        timelineStatus: constructStatus(order.orderStatus!),
+                        timelineTimestamp: formatToTime(order.orderDate!),
+                        timelineDesc: constructDesc(order.orderStatus!),
                       );
                     },
                   );

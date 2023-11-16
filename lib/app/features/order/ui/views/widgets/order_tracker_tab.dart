@@ -1,4 +1,9 @@
+import 'package:eden_task/app/features/order/ui/cubit/order_bloc.dart';
+import 'package:eden_task/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class OrderTrackerTab extends StatelessWidget {
   const OrderTrackerTab({
@@ -7,41 +12,52 @@ class OrderTrackerTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xffE7DAC9),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Your order has been placed.',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+    return BlocBuilder<OrderBloc, OrderState>(
+      builder: (context, state) {
+        // final order = state.orders.last;
+        return Container(
+          decoration: BoxDecoration(
+            color: const Color(0xffE7DAC9),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  state.orders.isNotEmpty
+                      ? constructStatus(state.orders.last.orderStatus!)
+                      : 'Hungry?',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  state.orders.isNotEmpty
+                      ? constructDesc(state.orders.last.orderStatus!)
+                      : 'Place an order!',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+                const Gap(10),
+                LinearPercentIndicator(
+                  barRadius: const Radius.circular(4),
+                  lineHeight: 4,
+                  percent: state.orders.length / 6 * 1,
+                  backgroundColor: Colors.green.shade200,
+                  progressColor: Colors.green,
+                  animation: true,
+                ),
+              ],
             ),
-            const Text(
-              'Waiting for the vendor to accept your order.',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: generatePills(),
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -52,9 +68,9 @@ List<Widget> generatePills() {
     (index) {
       return Expanded(
         child: Padding(
-          padding: const EdgeInsets.only(right: 8),
+          padding: const EdgeInsets.only(right: 4),
           child: Container(
-            height: 5,
+            height: 3,
             decoration: BoxDecoration(
               color: Colors.green,
               borderRadius: BorderRadius.circular(8),
