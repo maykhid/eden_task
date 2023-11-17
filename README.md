@@ -36,7 +36,7 @@ The task is to build a simple order-tracking app using Flutter, incorporating Fi
 The app connects to Ably and listens for updates as soon as the app is launched and attaches to the ``eden`` channel (https://realtime.ably.io/channels/eden/messages). Updates sent from Ably are received in real-time and will update the UI but using the pre-determined data makes the app work as intended without any hiccups ``{
   "name": "Eden",
   "data": "ORDER PLACED"
-}``, the ``data`` value should be any of these ``ORDER PLACED``, ``ORDER ACCEPTED``, ``ORDER PICK UP IN PROGRESS``, ``ORDER ON THE WAY TO CUSTOMER``, ``ORDER ARRIVED`` and ``ORDER DELIVERED`` (so the app can work as intended).
+}``, the ``data`` should be any of these string values ``ORDER PLACED``, ``ORDER ACCEPTED``, ``ORDER PICK UP IN PROGRESS``, ``ORDER ON THE WAY TO CUSTOMER``, ``ORDER ARRIVED`` and ``ORDER DELIVERED`` (so the app can work as intended).
 
 ## ⚠️ Issues
 On some devices, authentication might not work especially when you try to sign in with GitHub you might get this error:
