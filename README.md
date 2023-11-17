@@ -33,7 +33,7 @@ I am currently running `Flutter version beta, 3.15.0-15.2.pre` with `Dart versio
 The task is to build a simple order-tracking app using Flutter, incorporating Firebase Auth for user authentication and Ably Realtime for real-time updates. The app enables users to sign in with either Google or GitHub via Firebase Auth.
 
 ## 🛠 Technical Note
-The app connects to Ably and listens for updates as soon as the app is launched and attached to the ``eden`` channel. Updates sent from Ably are received in real-time and will update the UI but using the pre-determined data makes the app work as intended without any hiccups ``{
+The app connects to Ably and listens for updates as soon as the app is launched and attaches to the ``eden`` channel (https://realtime.ably.io/channels/eden/messages). Updates sent from Ably are received in real-time and will update the UI but using the pre-determined data makes the app work as intended without any hiccups ``{
   "name": "Eden",
   "data": "ORDER PLACED"
 }``, the ``data`` value should be any of these ``ORDER PLACED``, ``ORDER ACCEPTED``, ``ORDER PICK UP IN PROGRESS``, ``ORDER ON THE WAY TO CUSTOMER``, ``ORDER ARRIVED`` and ``ORDER DELIVERED`` (so the app can work as intended).
