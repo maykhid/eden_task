@@ -9,13 +9,7 @@ class FirebaseAuthentication implements AuthenticationInterface {
   FirebaseAuthentication({
     required FirebaseAuth firebaseAuth,
   }) : _firebaseAuth = firebaseAuth {
-    _firebaseAuth.authStateChanges().listen((user) {
-      if (user != null) {
-        _user = user;
-      } else {
-        _user = null;
-      }
-    });
+    _firebaseAuth.authStateChanges().listen((user) => _user = user);
   }
 
   final FirebaseAuth _firebaseAuth;
